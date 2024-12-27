@@ -5,17 +5,14 @@ import pickle
 
 app = Flask(__name__)
 
-# Load vị trí ô đỗ xe và nhãn tương ứng
 positions_path = "carPos-2"
 with open(positions_path, "rb") as f:
     posList = pickle.load(f)
 
-# Danh sách nhãn cho các vị trí (giả định bạn có danh sách này)
-labels = [f"Spot-{i+1}" for i in range(len(posList))]  # Gán nhãn từ Spot-1 đến Spot-122
+labels = [f"Spot-{i+1}" for i in range(len(posList))]
 
 width, height = 210, 158
 
-# Hàm kiểm tra ô trống
 def check_parking_spots(img):
     results = []
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
